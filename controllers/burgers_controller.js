@@ -43,7 +43,15 @@ module.exports = function(app) {
 	});
 
 	app.put('/api/update/:id', (req, res) => {
-		//blah
+		let burgerID = req.params.id;
+		let updatedState = req.body.devoured;
+
+		Burger.update(
+			{devoured: updatedState},
+			{where: { id: burgerID}}
+		).then( ()=>{
+			res.send('success');
+		});
 	});
 
 
