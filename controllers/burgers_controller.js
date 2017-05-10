@@ -1,5 +1,6 @@
 'use strict';
-
+'use strict';
+const bodyParser = require('body-parser');
 const express = require('express');
 const Burger = require('../models/burger');
 
@@ -15,8 +16,30 @@ module.exports = function(app) {
 		);
 	});
 
+	//for sanity check testing
+	app.get('/api/specific/:id', (req, res) => {
+		let burgerID = req.params.id;
+
+		Burger.findAll({
+			attributes: ['id', 'burgerName', 'devoured'],
+			where: {id: burgerID}
+		}).then( (result)=> {
+			return res.json(result);
+		}
+		);
+	});
+
 	app.post('/api/new', (req, res) => {
-		//blah
+		let newBurger = req.body;
+		console.log('New Entry', newBurger);
+
+		Burger.create({
+			burgerName: newBurger.burgerName,
+			devoured: 'false',
+		}).then( ()=>{
+			res.send('success');
+		});
+
 	});
 
 	app.put('/api/update/:id', (req, res) => {
