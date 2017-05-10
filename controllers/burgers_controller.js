@@ -1,7 +1,4 @@
 'use strict';
-'use strict';
-const bodyParser = require('body-parser');
-const express = require('express');
 const Burger = require('../models/burger');
 
 
@@ -37,7 +34,7 @@ module.exports = function(app) {
 			burgerName: newBurger.burgerName,
 			devoured: 'false',
 		}).then( ()=>{
-			res.send('success');
+			return res.json('success');
 		});
 
 	});
@@ -50,7 +47,7 @@ module.exports = function(app) {
 			{devoured: updatedState},
 			{where: { id: burgerID}}
 		).then( ()=>{
-			res.send('success');
+			return res.json('success');
 		});
 	});
 
