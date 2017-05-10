@@ -1,25 +1,16 @@
 'use strict';
 
-//==MODULE==
-const mysql = require('mysql');
+const Sequelize = require('sequelize');
 
-//Connection settings
-const connection = mysql.createConnection({
-	port: 3306,
+// Creates mySQL connection using Sequelize
+let connection = new Sequelize('burgers_db','root','', {
 	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'cat_db'
-});
-
-//Connect
-connection.connect(function(err) {
-	if (err) {
-		console.error('error connecting: ' + err.stack);
-		return;
+	dialect: 'mysql',
+	pool: {
+		max: 5,
+		min: 0,
+		idle: 10000
 	}
-	console.log('connected as id ' + connection.threadId);
 });
 
-// Export connection
 module.exports = connection;
