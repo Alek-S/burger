@@ -10,7 +10,12 @@ if(process.env.DATABASE_URL){
     	protocol: 'postgres',
     	port:     5432,
     	host:     'ec2-174-129-223-193.compute-1.amazonaws.com',
-    	logging:  true //false
+    	logging:  true, //false
+    	pool: {
+			max: 5,
+			min: 0,
+			idle: 10000
+		}
 	});
 }else{
 	connection = new Sequelize('burgers_db','root','', {
