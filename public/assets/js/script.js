@@ -6,9 +6,11 @@ $( document ).ready(function(){
 	});
 
 	$('.devourBtn').on('click', function(){
-		$.post(window.location.origin + '/api/update/' + $(this).attr('id'),function(){
-			location.reload();
-		});
-	});
 
+		$.ajax(window.location.origin + '/api/update/' + $(this).attr('id'), {
+			type :'PUT'
+        }).done(function(res){ //get best match
+        	location.reload();
+        });
+    });
 });
