@@ -48,9 +48,9 @@ module.exports = function(app) {
 
 	});
 
-	app.put('/api/update/:id', (req, res) => {
+	app.post('/api/update/:id', (req, res) => {
 		let burgerID = req.params.id;
-		let updatedState = req.body.devoured;
+		let updatedState = true;
 
 		Burger.update(
 			{devoured: updatedState},
