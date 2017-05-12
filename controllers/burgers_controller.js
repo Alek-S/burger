@@ -35,12 +35,12 @@ module.exports = function(app) {
 		);
 	});
 
-	app.post('/api/new', (req, res) => {
-		let newBurger = req.body;
+	app.post('/api/new/:name', (req, res) => {
+		let newBurger = req.params.name;
 		console.log('New Entry', newBurger);
 
 		Burger.create({
-			burgerName: newBurger.burgerName,
+			burgerName: newBurger,
 			devoured: 'false',
 		}).then( (result)=>{
 			return res.json(result);
