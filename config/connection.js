@@ -1,17 +1,28 @@
 'use strict';
 const Sequelize = require('sequelize');
 const chalk = require('chalk');
+let connection = undefined;
 
 // Creates mySQL connection using Sequelize
-let connection = new Sequelize('burgers_db','root','', {
-	host: 'localhost',
-	dialect: 'mysql',
-	pool: {
-		max: 5,
-		min: 0,
-		idle: 10000
-	}
-});
+if(process.env.DATABASE_URL){
+	connection = new Sequelize(process.env.DATABASE_URL, {
+		dialect:  'postgres',
+    	protocol: 'postgres',
+    	port:     5432,
+    	host:     'ec2-174-129-223-193.compute-1.amazonaws.com',
+    	logging:  true //false
+	});
+}else{
+	connection = new Sequelize('burgers_db','root','', {
+		host: 'localhost',
+		dialect: 'mysql',
+		pool: {
+			max: 5,
+			min: 0,
+			idle: 10000
+		}
+	});
+}
 
 //check if connected;
 connection.authenticate()
