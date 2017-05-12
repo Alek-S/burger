@@ -4,13 +4,14 @@
 //==MODULES==
 const express = require('express');
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
+// const methodOverride = require('method-override');
+const handlebars = require('express-handlebars');
+
 
 
 //==Express Setup==
 const app = express();
 app.set('port', (process.env.PORT || 5000));
-
 
 //===Parsing===
 app.use(bodyParser.json());
@@ -20,7 +21,12 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 
 //===Static Files, CSS,Images,Fonts===
-app.use(express.static('public'));
+app.use(express.static('./public'));
+
+
+//===Express-Handlebars===
+app.engine('handlebars', handlebars({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
 
 //===Routes===

@@ -1,0 +1,28 @@
+<div id='notDevoured'>
+	{{#each burgerEntry}}
+		{{#unless devoured}}
+		<div class='entry'>
+			{{id}} {{burgerName}}
+		</div>
+		{{/unless}}
+	{{/each}}
+</div>
+
+<div id='devoured'>
+	{{#each burgerEntry}}
+		{{#if devoured}}
+		<div class='entry'>
+			{{id}} {{burgerName}}
+		</div>
+		{{/if}}
+	{{/each}}
+</div>		
+
+<form>
+	<textarea placeholder="Enter Burger Name Here">
+	</textarea>
+
+	<button>Submit</button>
+</form>
+
+

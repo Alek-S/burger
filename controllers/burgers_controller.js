@@ -4,6 +4,15 @@ const Burger = require('../models/burger');
 
 module.exports = function(app) {
 
+//===HTML ROUTES===
+	app.get('/', function (req, res) {
+		Burger.findAll().then((data)=>{
+			res.render('index', {burgerEntry: data});
+		})	
+	});
+
+
+//===API ROUTES===
 	app.get('/api/all', (req, res) => {
 		Burger.findAll({
 			attributes: ['id', 'burgerName', 'devoured']
@@ -33,8 +42,8 @@ module.exports = function(app) {
 		Burger.create({
 			burgerName: newBurger.burgerName,
 			devoured: 'false',
-		}).then( ()=>{
-			return res.json('success');
+		}).then( (result)=>{
+			return res.json(result);
 		});
 
 	});
@@ -46,8 +55,8 @@ module.exports = function(app) {
 		Burger.update(
 			{devoured: updatedState},
 			{where: { id: burgerID}}
-		).then( ()=>{
-			return res.json('success');
+		).then( (result)=>{
+			return res.json(result);
 		});
 	});
 
