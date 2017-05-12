@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const chalk = require('chalk');
 let connection = undefined;
 
-// Creates mySQL connection using Sequelize
+// Creates Postgres(Heroku) mySQL(Local) connection using Sequelize
 if(process.env.DATABASE_URL){
 	connection = new Sequelize(process.env.DATABASE_URL, {
 		dialect:  'postgres',
