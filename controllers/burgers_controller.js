@@ -5,6 +5,8 @@ const Burger = require('../models/burger');
 module.exports = function(app) {
 
 //===HTML ROUTES===
+	
+	//grab all burgers and use them for index template
 	app.get('/', function (req, res) {
 		Burger.findAll().then((data)=>{
 			res.render('index', {burgerEntry: data});
@@ -13,6 +15,8 @@ module.exports = function(app) {
 
 
 //===API ROUTES===
+
+	//return all results
 	app.get('/api/all', (req, res) => {
 		Burger.findAll({
 			attributes: ['id', 'burgerName', 'devoured']
@@ -35,6 +39,7 @@ module.exports = function(app) {
 		);
 	});
 
+	//new burger
 	app.post('/api/new/:name', (req, res) => {
 		let newBurger = req.params.name;
 		console.log('New Entry', newBurger);
@@ -48,6 +53,7 @@ module.exports = function(app) {
 
 	});
 
+	//devour burger
 	app.put('/api/update/:id', (req, res) => {
 		let burgerID = req.params.id;
 		let updatedState = true;
