@@ -1,18 +1,20 @@
 <div id='notDevoured'>
+	<h2>Not Devoured</h2>
 	{{#each burgerEntry}}
 		{{#unless devoured}}
 		<div class='entry'>
-			{{id}} {{burgerName}}
+			{{id}}. {{burgerName}} <button class='devourBtn' id={{id}}>Devour It!</button>
 		</div>
 		{{/unless}}
 	{{/each}}
 </div>
 
 <div id='devoured'>
+	<h2>Devoured</h2>
 	{{#each burgerEntry}}
 		{{#if devoured}}
 		<div class='entry'>
-			{{id}} {{burgerName}}
+			{{id}}. {{burgerName}}
 		</div>
 		{{/if}}
 	{{/each}}
