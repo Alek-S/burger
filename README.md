@@ -1,4 +1,4 @@
-# Eat The McDowell Burger!
+# Eat The McDowell's Burger!
 
 #### Technology Used
 * Node.js
